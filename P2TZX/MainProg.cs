@@ -12,7 +12,7 @@ namespace P2TZX
 
         static void Main(string[] args)
         {
-            Console.WriteLine("P2TZX - Command line ZX81 .P to .TZX file conversion tool");
+            Console.WriteLine("P2TZX - Command line ZX80\\ZX81 .O, .P to .TZX file conversion tool");
             Console.WriteLine("(C) Brendan Alford 2016 (brendanalford@eircom.net)\n");
 
             bool debug = System.Diagnostics.Debugger.IsAttached;
@@ -90,7 +90,9 @@ namespace P2TZX
             Console.WriteLine("\nUsage: P2TZX <options> <filename>\n");
             Console.WriteLine("Valid options are:");
             Console.WriteLine("-b, -batch   : Perform batch conversion (requires wildcard in filename)");
-            Console.WriteLine("-s, -subdir  : Recurse all subdirectories (requires -b or -batch)\n");
+            Console.WriteLine("-s, -subdir  : Recurse all subdirectories (requires -b or -batch)\n\n");
+            Console.WriteLine("If a TZX is supplied, will convert to .P format.");
+
         }
     }
 }

@@ -46,7 +46,11 @@ namespace P2TZX
         {
             FileInfo file = new FileInfo(fileName);
             string extension = file.Extension.ToUpper();
-            if (extension.CompareTo(".P") == 0)
+            if (extension.CompareTo(".O") == 0)
+            {
+                ConvertOToTZX(file);
+            }
+            else if (extension.CompareTo(".P") == 0)
             {
                 ConvertPToTZX(file);
             }
@@ -62,9 +66,19 @@ namespace P2TZX
 
         private void ConvertPToTZX(FileInfo file)
         {
+            Convert8081ToTZX(file, file.Name);
+        }
+
+        private void ConvertOToTZX(FileInfo file)
+        {
+            Convert8081ToTZX(file, String.Empty);
+        }
+
+        private void Convert8081ToTZX(FileInfo file, String fileName)
+        {
             // Allocate input buffer to allow enough room for
             // ZX81 filename + raw data
-            int fNameLen = file.Name.IndexOf('.');
+            int fNameLen = fileName.IndexOf('.') < 0 ? 0 : fileName.IndexOf('.');
 
             FileStream fs = new FileStream(file.FullName, FileMode.Open);
             int plen = (int)file.Length;
@@ -73,7 +87,7 @@ namespace P2TZX
             fs.Close();
 
             plen += fNameLen;
-            string fName = file.Name.ToUpper();
+            string fName = fileName.ToUpper();
             
             for (int i = 0; i < fNameLen; i++)
             {
