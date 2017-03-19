@@ -149,11 +149,17 @@ namespace P2TZX
             ptr = 0x0a;
 
             // Skip any Text Description blocks
-            while (data[ptr] == 0x30)
+            while (ptr < plen && data[ptr] == 0x30)
             {
                 ptr++;
                 int textLen = data[ptr++];
                 ptr += textLen;
+            }
+
+            if (plen == ptr)
+            {
+                Console.WriteLine("ERROR: No GDB block found in {0}", file.Name);
+                return;
             }
 
             if (data[ptr] != 0x19)

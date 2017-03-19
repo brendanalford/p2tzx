@@ -23,7 +23,7 @@ namespace P2TZX
                 return;
             }
 
-            string fileName = debug ? "crash.p" : ParseCommandLine(args);
+            string fileName = debug ? "romcheck.tzx" : ParseCommandLine(args);
            
 
             IConverter converter = new TZXConverter();
